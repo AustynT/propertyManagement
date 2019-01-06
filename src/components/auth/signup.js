@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Signup extends Component {
   render() {
-    return <div className="sign-up">Signup....</div>;
+    return <div className="sign-up">Sign up</div>;
   }
 }
 
