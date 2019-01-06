@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
-class headerWrapper extends Component {
+class HeaderWrapper extends Component {
   render() {
     return (
-      <div className="header-wraper">
-        <h1>Welcome to Hoa Manager</h1>
-        <p>Please login in to continue</p>
+      <div className="header-wrapper">
+        <h1 className="header-wrapper__title">Welcome to Hoa Manager</h1>
+        <p className="header-wrapper__subtitle">Please login in to continue</p>
         {this.props.children}
       </div>
     );
   }
 }
 
-export default headerWrapper;
+export default HeaderWrapper;
