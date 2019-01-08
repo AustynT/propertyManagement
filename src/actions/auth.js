@@ -24,3 +24,24 @@ export function signUp(fields, success) {
       });
   };
 }
+
+export function signIn(fields, success) {
+  return function(disbatch) {
+    axios
+      .post(`${ROOT_URL}/signIn`, fields)
+      .then(response => {
+        const token = response.data;
+        localStorage.setItem("token", token);
+        disbatch({
+          type: AUTHENTICATE_USER,
+          payload: response.data
+        });
+        success();
+      })
+      .catch(err => {
+        if (err) {
+          console.log(err);
+        }
+      });
+  };
+}
