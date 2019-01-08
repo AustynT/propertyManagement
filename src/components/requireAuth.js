@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import history from "../history";
+
 export default function(ComposedComponent) {
   class Authentication extends Component {
     componentWillMount() {
-      if (!this.props.auth) {
-        this.props.history.push("/");
+      if (!this.props.authenticated) {
+        history.push("/");
       }
     }
-    componentWillUpdate() {}
+    componentWillUpdate(nextProps) {
+      if (!nextProps.authenticated) {
+        history("/");
+      }
+    }
     render() {
       return <ComposedComponent />;
     }
   }
 
   function mapStateToProps(state) {
-    const { authenticated } = this.auth;
+    const { authenticated } = state.auth;
     return { authenticated };
   }
 
