@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
+    // one prop at a time.
     case AUTHENTICATE_USER:
       const user = action.payload;
       return { ...state, authenticated: true, user };

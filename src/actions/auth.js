@@ -2,19 +2,16 @@ import axios from "axios";
 
 import { ROOT_URL } from "../config";
 
-import { AUTHENTICATE_USER } from "./types";
+import { actions } from "./types";
 
 export function signUp(fields, success) {
-  return function(disbatch) {
+  return function(dispatch) {
     axios
       .post(`${ROOT_URL}/signUp`, fields)
       .then(response => {
-        const token = response.data;
+        const token = response.token;
         localStorage.setItem("token", token);
-        disbatch({
-          type: AUTHENTICATE_USER,
-          payload: response.data
-        });
+        dispatch(actions.authenticateUser(response.user));
         success();
       })
       .catch(err => {
@@ -26,16 +23,13 @@ export function signUp(fields, success) {
 }
 
 export function signIn(fields, success) {
-  return function(disbatch) {
+  return function(dispatch) {
     axios
       .post(`${ROOT_URL}/signIn`, fields)
       .then(response => {
-        const token = response.data;
+        const token = response.token;
         localStorage.setItem("token", token);
-        disbatch({
-          type: AUTHENTICATE_USER,
-          payload: response.data
-        });
+        dispatch(actions.authenticateUser(response.user));
         success();
       })
       .catch(err => {
